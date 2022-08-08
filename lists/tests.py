@@ -102,6 +102,14 @@ class ListViewTest(TestCase):
         self.assertNotContains(response, 'другой элемент 1 списка')
         self.assertNotContains(response, 'другой элемент 2 списка')
 
+    def test_passes_correct_list_to_template(self):
+        '''тест: передается правильный шаблон списка'''
+
+        other_list = List.objects.create()
+        correct_list = List.objects.create()
+        response = self.client.get(f'/lists/{correct_list.id}/')
+        self.assertEqual(response.context['list'], correct_list)
+
 class NewListTest(TestCase):
     '''тест нового списка'''
 
