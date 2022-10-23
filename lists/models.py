@@ -1,3 +1,4 @@
+from enum import unique
 from django.db import models
 from django.urls import reverse
 
@@ -13,3 +14,10 @@ class Item(models.Model):
 
     text = models.TextField(default='')
     list = models.ForeignKey(List, on_delete=models.CASCADE, default=None)
+
+    class Meta:
+        ordering = ('id',)
+        unique_together = ('list', 'text')
+
+    def __str__(self) -> str:
+        return self.text
