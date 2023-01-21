@@ -98,12 +98,18 @@ class LoginViewTest(TestCase):
         self.client.get('/accounts/login?token=abcd123')
         self.assertEqual(mock_auth.login.called, False)
 
-@patch('accounts.views.auth')
 class TestLogoutView(TestCase):
     '''тест представления выхода из системы'''
 
-    def test_logout_redirect_to_home_page(self, mock_auth):
+    def test_logout_redirect_to_home_page(self):
         '''тест: переадресация на домашнюю страницу'''
 
         response = self.client.get('/accounts/logout')
         self.assertRedirects(response, '/')
+
+    @patch('accounts.views.auth')
+    def test_calls_logout(self, mock_auth):
+        '''тест: вызывает функцию logout'''
+        
+        self.client.get('/accounts/logout')
+        self.assertEqual(mock_auth.logout.called, True)

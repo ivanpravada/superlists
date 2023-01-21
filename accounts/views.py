@@ -3,7 +3,6 @@ from django.shortcuts import redirect
 from django.contrib import messages, auth
 from accounts.models import Token
 from django.urls import reverse
-from django.contrib.auth import logout
 
 def send_login_email(request):
     '''отправить сообщение для входа в систему'''
@@ -37,5 +36,5 @@ def login(request):
 def logout_view(request):
     '''выход из системы'''
 
-    logout(request)
+    auth.logout(request)
     return redirect('/')
