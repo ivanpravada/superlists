@@ -1,5 +1,9 @@
-from fabric.api import run
+from fabric.api import *
 from fabric.context_managers import settings
+
+env.user = 'ubuntu'
+env.key_filename = ['../key.pem']
+env.hosts = ['superlists.by']
 
 def _get_manage_dot_py(host):
     '''получить manage.py'''
