@@ -2,12 +2,12 @@ from fabric.api import *
 from fabric.context_managers import settings
 
 env.user = 'ubuntu'
-env.key_filename = ['../key.pem']
+env.key_filename = ['key.pem']
 
 def _get_manage_dot_py(host):
     '''получить manage.py'''
 
-    return f'~/sites/{host}/virtualenv/bin/python ~/sites/{host}/source/manage.py'
+    return f'/home/{env.user}/sites/{host}/virtualenv/bin/python /home/{env.user}/sites/{host}/source/manage.py'
 
 def reset_database(host):
     '''обнулить базу данных'''

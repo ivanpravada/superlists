@@ -66,6 +66,7 @@ class LoginTest(FunctionalTest):
             return email.body
         
         email_id = None
+        time.sleep(5)
         start = time.time()
         inbox = poplib.POP3_SSL('pop.yandex.by')
         try:
@@ -75,7 +76,7 @@ class LoginTest(FunctionalTest):
                 # получить 10 самых новых сообщений
                 count, _ = inbox.stat()
                 for i in reversed(range(max(1, count - 10), count + 1)):
-                    # print('getting msg', i)
+                    print('getting msg', i)
                     _, lines, __ = inbox.retr(i)
                     lines = [l.decode('utf-8') for l in lines]
                     if f'Subject: {subject}' in lines:
