@@ -6,7 +6,7 @@ from collections.abc import Mapping
 REPO_URL = 'https://github.com/ivanpravada/superlists.git'
 env.user = 'ubuntu'
 env.key_filename = ['../key.pem']
-env.hosts = ['ec2-44-205-224-126.compute-1.amazonaws.com']
+env.hosts = ['superlists.by']
 
 
 def deploy():

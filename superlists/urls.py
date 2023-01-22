@@ -1,4 +1,6 @@
 from django.conf.urls import include
+from django.views.generic.base import RedirectView
+from django.contrib.staticfiles.storage import staticfiles_storage
 from django.urls import re_path
 from lists import views as list_views
 from lists import urls as list_urls
