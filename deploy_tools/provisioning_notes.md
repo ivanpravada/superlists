@@ -14,10 +14,11 @@
 * см. nginx.template.conf
 * заменить SITENAME, например, на staging.my-domen.com
 
-## Служба System
+## Служба Systemd
 
-* см. gunicorn-system.template.service
+* см. gunicorn-systemd.template.service
 * заменить SITENAME, например, на staging.my-domen.com
+* заменить SEKRIT на почтовый пароль
 
 ## Структура папок:
 Если допустить, что есть учетная запись пользователя в /home/username
