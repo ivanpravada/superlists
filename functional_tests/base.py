@@ -53,3 +53,21 @@ class FunctionalTest(StaticLiveServerTestCase):
         '''получить поле ввода для элемента'''
 
         return self.browser.find_element(By.ID, 'id_text')
+
+    def wait_to_be_logged_in(self, email):
+        '''ожидать входа в систему'''
+
+        self.wait_for(
+            lambda: self.browser.find_element(By.LINK_TEXT, "Log out")
+        )
+        navbar = self.browser.find_element(By.CSS_SELECTOR, '.navbar')
+        self.assertIn(email, navbar.text)
+
+    def wait_to_be_logged_out(self, email):
+        '''ожидать выхода из системы'''
+
+        self.wait_for(
+            lambda: self.browser.find_element(By.NAME, 'email')
+        )
+        navbar = self.browser.find_element(By.CSS_SELECTOR, '.navbar')
+        self.assertNotIn(email, navbar.text)
