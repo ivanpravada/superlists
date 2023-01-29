@@ -187,3 +187,12 @@ class NewListTest(TestCase):
         self.client.post('/lists/new', data={'text': ''})
         self.assertEqual(List.objects.count(), 0)
         self.assertEqual(Item.objects.count(), 0)
+
+class MyListsTest(TestCase):
+    '''тест приложения "My Lists"'''
+
+    def test_my_lists_url_renders_my_lists_template(self):
+        '''тест: используется шаблон my_lists'''
+
+        response = self.client.get('/lists/users/a@b.com/')
+        self.assertTemplateUsed(response, 'my_lists.html')
