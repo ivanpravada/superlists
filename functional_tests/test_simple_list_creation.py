@@ -28,24 +28,15 @@ class NewVisitorTest(FunctionalTest):
 
         # Она набирает в текстовом поле "Купить павлиньи перья" (ее хобби -
         # вязание рыболовных мушек)
-        inputbox.send_keys('Купить павлиньи перья')
-
         # Когда она нажимает Enter, страница обновляется, и теперь страница
         # содержит "1: Купить павлиньи перья" в качестве элемента списка
-        inputbox.send_keys(Keys.ENTER)
-        self.wait_for_row_in_list_table('1: Купить павлиньи перья')
+        self.add_list_item('Купить павлиньи перья')
 
         # Текстовое поле по-прежнему приглашает ее добавить еще один элемент.
         # Она вводит "Сделать мушку из павлиньих перьев"
         # (Эдит очень методична)
-        inputbox = self.get_item_input_box()
-        inputbox.send_keys('Сделать мушку из павлиньих перьев')
-        inputbox.send_keys(Keys.ENTER)
-
         # Страница снова обновляется, и теперь показывает оба элемента ее списка
-        self.wait_for_row_in_list_table('1: Купить павлиньи перья')
-        self.wait_for_row_in_list_table('2: Сделать мушку из павлиньих перьев')
-
+        self.add_list_item('Сделать мушку из павлиньих перьев')
         # Удовлетворенная, она снова ложится спать
 
     def test_multiple_users_can_start_lists_at_different_urls(self):
@@ -53,10 +44,7 @@ class NewVisitorTest(FunctionalTest):
 
         # Эдит начинает новый список
         self.browser.get(self.live_server_url)
-        inputbox = self.get_item_input_box()
-        inputbox.send_keys('Купить павлиньи перья')
-        inputbox.send_keys(Keys.ENTER)
-        self.wait_for_row_in_list_table('1: Купить павлиньи перья')
+        self.add_list_item('Купить павлиньи перья')
         
         # Она замечает, что ее список имеет уникальный URL-адрес
         edith_list_url = self.browser.current_url
@@ -77,10 +65,7 @@ class NewVisitorTest(FunctionalTest):
 
         # Фрэнсис начинает новый список, вводя новый элемент. Он менее
         # интересен, чем список Эдит...
-        inputbox = self.get_item_input_box()
-        inputbox.send_keys('Купить молоко')
-        inputbox.send_keys(Keys.ENTER)
-        self.wait_for_row_in_list_table('1: Купить молоко')
+        self.add_list_item('Купить молоко')
 
         # Фрэнсис получает уникальные URL-адрес
         francis_list_url = self.browser.current_url
