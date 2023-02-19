@@ -3,3 +3,5 @@ geckodriver.log
 __pycache__
 *.pyc
 key.pem
+CI.pem
+functional_tests/screendumps
